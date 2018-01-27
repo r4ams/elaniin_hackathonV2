@@ -1,19 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.tickets.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.tickets.store']]) !!}
+    <h3 class="page-title">Tickets</h3>
 
+    <form method="POST" action="{{ route('admin.tickets.store') }}" accept-charset="UTF-8">
+        {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_create')
+            Crear
         </div>
         
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('event_id', 'Event*', ['class' => 'control-label']) !!}
-                    {!! Form::select('event_id', $events, old('event_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                <label for="event_id" class="control-label">Event</label>
+                    <select class="form-control" name="event_id">
+                     @foreach($events as $event)
+                       <option value="{{ $event->id }}"> {{ $event->title }} </option>
+                     @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('event_id'))
                         <p class="help-block">
@@ -24,8 +29,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', 'Ticket Type*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => 'Regular, Student, Early Bird etc.', 'required' => '']) !!}
+                <label for="title" class="control-label">Ticket Type</label>
+                <input class="form-control" required="" name="title" type="text" id="title">
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -36,8 +41,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('amount', 'Amount of tickets available*', ['class' => 'control-label']) !!}
-                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                <label for="amount" class="control-label">Cantidad tickets</label>
+                <input class="form-control" placeholder="" required="" name="amount" type="text" id="amount">
                     <p class="help-block"></p>
                     @if($errors->has('amount'))
                         <p class="help-block">
@@ -48,8 +53,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('available_from', 'Available from*', ['class' => 'control-label']) !!}
-                    {!! Form::text('available_from', old('available_from'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                <label for="available_from" class="control-label">Fecha Inicio</label>
+                <input class="form-control" placeholder="" required="" name="available_from" type="text" id="available_from">
                     <p class="help-block"></p>
                     @if($errors->has('available_from'))
                         <p class="help-block">
@@ -60,8 +65,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('available_to', 'Available to*', ['class' => 'control-label']) !!}
-                    {!! Form::text('available_to', old('available_to'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                <label for="available_to" class="control-label">Fecha Fin</label>
+                <input class="form-control" placeholder="" required="" name="available_to" type="text" id="available_to">
                     <p class="help-block"></p>
                     @if($errors->has('available_to'))
                         <p class="help-block">
@@ -72,8 +77,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('price', 'Price*', ['class' => 'control-label']) !!}
-                    {!! Form::text('price', old('price'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                <label for="price" class="control-label">Precio</label>
+                <input class="form-control" placeholder="" required="" name="price" type="text" id="price">
                     <p class="help-block"></p>
                     @if($errors->has('price'))
                         <p class="help-block">
@@ -85,18 +90,6 @@
             
         </div>
     </div>
-
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
-@stop
-
-@section('javascript')
-    @parent
-    <script>
-        $('.date').datepicker({
-            autoclose: true,
-            dateFormat: "{{ config('app.date_format_js') }}"
-        });
-    </script>
-
+<input class="btn btn-danger" type="submit" value="Guardar">
+</form>
 @stop

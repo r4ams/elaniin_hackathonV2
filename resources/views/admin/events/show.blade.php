@@ -1,31 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.events.title')</h3>
+    <h3 class="page-title">Evento</h3>
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.qa_view')
-        </div>
 
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>@lang('quickadmin.events.fields.title')</th>
+                            <th>Titulo</th>
                             <td>{{ $event->title }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.events.fields.description')</th>
+                            <th>Descripcion</th>
                             <td>{!! $event->description !!}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.events.fields.start-time')</th>
+                            <th>Fecha y hora de inicio</th>
                             <td>{{ $event->start_time }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.events.fields.venue')</th>
+                            <th>Locacion</th>
                             <td>{!! $event->venue !!}</td>
                         </tr>
                     </table>
@@ -43,12 +40,12 @@
 <table class="table table-bordered table-striped {{ count($tickets) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.tickets.fields.event')</th>
-                        <th>@lang('quickadmin.tickets.fields.title')</th>
-                        <th>@lang('quickadmin.tickets.fields.amount')</th>
-                        <th>@lang('quickadmin.tickets.fields.available-from')</th>
-                        <th>@lang('quickadmin.tickets.fields.available-to')</th>
-                        <th>@lang('quickadmin.tickets.fields.price')</th>
+                        <th>Evento</th>
+                        <th>Titulo</th>
+                        <th>Cantidad</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha fin</th>
+                        <th>Precio</th>
                         <th>&nbsp;</th>
         </tr>
     </thead>
@@ -84,7 +81,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="10">Vacio</td>
             </tr>
         @endif
     </tbody>
@@ -94,7 +91,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.events.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('admin.events.index') }}" class="btn btn-default">Regresar</a>
         </div>
     </div>
 @stop

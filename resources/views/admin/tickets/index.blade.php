@@ -1,33 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.tickets.title')</h3>
+    <h3 class="page-title">Tickets</h3>
     @can('ticket_create')
     <p>
-        <a href="{{ route('admin.tickets.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        <a href="{{ route('admin.tickets.create') }}" class="btn btn-success">Agregar nuevo ticket</a>
         
     </p>
     @endcan
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.qa_list')
-        </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($tickets) > 0 ? 'datatable' : '' }} @can('ticket_delete') dt-select @endcan">
+            <table class="table">
                 <thead>
                     <tr>
                         @can('ticket_delete')
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
+                            <th style="text-align:center;"></th>
                         @endcan
 
-                        <th>@lang('quickadmin.tickets.fields.event')</th>
-                        <th>@lang('quickadmin.tickets.fields.title')</th>
-                        <th>@lang('quickadmin.tickets.fields.amount')</th>
-                        <th>@lang('quickadmin.tickets.fields.available-from')</th>
-                        <th>@lang('quickadmin.tickets.fields.available-to')</th>
-                        <th>@lang('quickadmin.tickets.fields.price')</th>
+                        <th>Evento</th>
+                        <th>Titulo</th>
+                        <th>Cantidad</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha fin</th>
+                        <th>Precio</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -48,18 +45,18 @@
                                 <td>{{ $ticket->price }}</td>
                                 <td>
                                     @can('ticket_view')
-                                    <a href="{{ route('admin.tickets.show',[$ticket->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    <a href="{{ route('admin.tickets.show',[$ticket->id]) }}" class="btn btn-xs btn-primary">Ver</a>
                                     @endcan
                                     @can('ticket_edit')
-                                    <a href="{{ route('admin.tickets.edit',[$ticket->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    <a href="{{ route('admin.tickets.edit',[$ticket->id]) }}" class="btn btn-xs btn-info">Editar</a>
                                     @endcan
                                     @can('ticket_delete')
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'onsubmit' => "return confirm('".trans("Desea eliminar")."');",
                                         'route' => ['admin.tickets.destroy', $ticket->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('Eliminar'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 </td>
@@ -67,7 +64,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="10">Vacio</td>
                         </tr>
                     @endif
                 </tbody>

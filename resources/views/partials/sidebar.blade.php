@@ -17,7 +17,7 @@
             <li class="{{ $request->segment(2) == 'events' ? 'active' : '' }}">
                 <a href="{{ route('admin.events.index') }}">
                     <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.events.title')</span>
+                    <span class="title">Eventos</span>
                 </a>
             </li>
             @endcan
@@ -26,7 +26,7 @@
             <li class="{{ $request->segment(2) == 'tickets' ? 'active' : '' }}">
                 <a href="{{ route('admin.tickets.index') }}">
                     <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.tickets.title')</span>
+                    <span class="title">Tickets</span>
                 </a>
             </li>
             @endcan
@@ -35,23 +35,13 @@
             <li class="{{ $request->segment(2) == 'payments' ? 'active' : '' }}">
                 <a href="{{ route('admin.payments.index') }}">
                     <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.payments.title')</span>
+                    <span class="title">Pago de tickets</span>
                 </a>
             </li>
             @endcan
             
-            @can('user_management_access')
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span class="title">@lang('quickadmin.user-management.title')</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
                 
-                @can('role_access')
+<!--                 @can('role_access')
                 <li class="{{ $request->segment(2) == 'roles' ? 'active active-sub' : '' }}">
                         <a href="{{ route('admin.roles.index') }}">
                             <i class="fa fa-briefcase"></i>
@@ -60,36 +50,22 @@
                             </span>
                         </a>
                     </li>
-                @endcan
+                @endcan -->
                 @can('user_access')
                 <li class="{{ $request->segment(2) == 'users' ? 'active active-sub' : '' }}">
                         <a href="{{ route('admin.users.index') }}">
                             <i class="fa fa-user"></i>
                             <span class="title">
-                                @lang('quickadmin.users.title')
+                                Usuarios
                             </span>
                         </a>
                     </li>
                 @endcan
-                </ul>
-            </li>
-            @endcan
-
-            
-
-            
-
-            <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
-                <a href="{{ route('auth.change_password') }}">
-                    <i class="fa fa-key"></i>
-                    <span class="title">Change password</span>
-                </a>
-            </li>
 
             <li>
                 <a href="#logout" onclick="$('#logout').submit();">
                     <i class="fa fa-arrow-left"></i>
-                    <span class="title">@lang('quickadmin.qa_logout')</span>
+                    <span class="title">Cerra Sesion</span>
                 </a>
             </li>
         </ul>

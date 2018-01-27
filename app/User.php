@@ -8,12 +8,7 @@ use Hash;
 /**
  * Class User
  *
- * @package App
- * @property string $name
- * @property string $email
- * @property string $password
- * @property string $role
- * @property string $remember_token
+
 */
 class User extends Authenticatable
 {
@@ -21,10 +16,6 @@ class User extends Authenticatable
     protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
     
     
-    /**
-     * Hash password
-     * @param $input
-     */
     public function setPasswordAttribute($input)
     {
         if ($input)
@@ -32,10 +23,6 @@ class User extends Authenticatable
     }
     
 
-    /**
-     * Set to null if empty
-     * @param $input
-     */
     public function setRoleIdAttribute($input)
     {
         $this->attributes['role_id'] = $input ? $input : null;

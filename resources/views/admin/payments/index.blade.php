@@ -1,27 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.payments.title')</h3>
+    <h3 class="page-title">Pagos</h3>
     @can('payment_create')
     <p>
-        <a href="{{ route('admin.payments.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        <a href="{{ route('admin.payments.create') }}" class="btn btn-success">Realizar pago</a>
         
     </p>
     @endcan
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.qa_list')
-        </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($payments) > 0 ? 'datatable' : '' }} ">
+            <table class="table">
                 <thead>
                     <tr>
                         
-                        <th>@lang('quickadmin.payments.fields.email')</th>
-                        <th>@lang('quickadmin.payments.fields.merchant')</th>
-                        <th>@lang('quickadmin.payments.fields.amount')</th>
+                        <th>Correo</th>
+                        <th>Wallets</th>
+                        <th>Cantidad de boletos</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -38,12 +35,12 @@
                                     @can('payment_view')
                                     <a href="{{ route('admin.payments.show',[$payment->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
                                     @endcan
-</td>
+                                </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="6">vacio</td>
                         </tr>
                     @endif
                 </tbody>

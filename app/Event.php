@@ -8,11 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Event
  *
- * @package App
- * @property string $title
- * @property text $description
- * @property string $start_time
- * @property text $venue
 */
 class Event extends Model
 {
@@ -20,11 +15,6 @@ class Event extends Model
 
     protected $fillable = ['title', 'description', 'start_time', 'venue'];
     
-
-    /**
-     * Set attribute to date format
-     * @param $input
-     */
     public function setStartTimeAttribute($input)
     {
         if ($input != null && $input != '') {
@@ -34,12 +24,6 @@ class Event extends Model
         }
     }
 
-    /**
-     * Get attribute from date format
-     * @param $input
-     *
-     * @return string
-     */
     public function getStartTimeAttribute($input)
     {
         $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format') . ' H:i:s');

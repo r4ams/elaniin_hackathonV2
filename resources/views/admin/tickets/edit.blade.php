@@ -1,19 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.tickets.title')</h3>
+    <h3 class="page-title">Ticket</h3>
     
     {!! Form::model($ticket, ['method' => 'PUT', 'route' => ['admin.tickets.update', $ticket->id]]) !!}
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.qa_edit')
-        </div>
-
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('event_id', 'Event*', ['class' => 'control-label']) !!}
+                    {!! Form::label('event_id', 'Evento', ['class' => 'control-label']) !!}
                     {!! Form::select('event_id', $events, old('event_id'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('event_id'))
@@ -25,7 +21,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', 'Ticket Type*', ['class' => 'control-label']) !!}
+                    {!! Form::label('title', 'Tipo de ticket', ['class' => 'control-label']) !!}
                     {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('title'))
@@ -37,7 +33,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('amount', 'Amount of tickets available*', ['class' => 'control-label']) !!}
+                    {!! Form::label('amount', 'Cantidad de ticket disponibles', ['class' => 'control-label']) !!}
                     {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('amount'))
@@ -49,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('available_from', 'Available from*', ['class' => 'control-label']) !!}
+                    {!! Form::label('available_from', 'Fecha inicio', ['class' => 'control-label']) !!}
                     {!! Form::text('available_from', old('available_from'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('available_from'))
@@ -61,7 +57,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('available_to', 'Available to*', ['class' => 'control-label']) !!}
+                    {!! Form::label('available_to', 'Fecha Fin', ['class' => 'control-label']) !!}
                     {!! Form::text('available_to', old('available_to'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('available_to'))
@@ -73,7 +69,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('price', 'Price*', ['class' => 'control-label']) !!}
+                    {!! Form::label('price', 'Precio', ['class' => 'control-label']) !!}
                     {!! Form::text('price', old('price'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('price'))
@@ -87,7 +83,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Modificar'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 

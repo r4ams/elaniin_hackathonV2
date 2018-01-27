@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.events.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.events.store']]) !!}
-
+    <h3 class="page-title"><ELEMENT>Eventos</ELEMENT></h3>
+    <form method="POST" action="{{ route('admin.events.store') }}" accept-charset="UTF-8">
+        {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_create')
+            Crear
         </div>
         
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', 'Title*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="title" class="control-label">Titulo: </label>
+                    <input class="form-control" required="" name="title" type="text" id="title">
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -24,8 +24,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('description', old('description'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
+                <label for="description" class="control-label">Descripción: </label>
+                <textarea class="form-control editor" placeholder="" name="description" cols="50" rows="10" id="description"></textarea>
                     <p class="help-block"></p>
                     @if($errors->has('description'))
                         <p class="help-block">
@@ -36,8 +36,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('start_time', 'Start time*', ['class' => 'control-label']) !!}
-                    {!! Form::text('start_time', old('start_time'), ['class' => 'form-control datetime', 'placeholder' => '', 'required' => '']) !!}
+                <label for="start_time" class="control-label">Fecha y hora de Inicio: </label>
+                <input class="form-control datetime" placeholder="" required="" name="start_time" type="text" id="start_time">
                     <p class="help-block"></p>
                     @if($errors->has('start_time'))
                         <p class="help-block">
@@ -48,8 +48,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('venue', 'Venue*', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('venue', old('venue'), ['class' => 'form-control ', 'placeholder' => '', 'required' => '']) !!}
+                <label for="venue" class="control-label">Locación: </label>
+                <textarea class="form-control " placeholder="" required="" name="venue" cols="50" rows="10" id="venue"></textarea>
                     <p class="help-block"></p>
                     @if($errors->has('venue'))
                         <p class="help-block">
@@ -62,31 +62,6 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
-@stop
-
-@section('javascript')
-    @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
-    <script>
-        $('.editor').each(function () {
-                  CKEDITOR.replace($(this).attr('id'),{
-                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-            });
-        });
-    </script>
-    <script src="{{ url('quickadmin/js') }}/timepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>    <script>
-        $('.datetime').datetimepicker({
-            autoclose: true,
-            dateFormat: "{{ config('app.date_format_js') }}",
-            timeFormat: "HH:mm:ss"
-        });
-    </script>
-
-@stop
+    <input class="btn btn-danger" type="submit" value="Guardar">
+    </form>
+@endsection

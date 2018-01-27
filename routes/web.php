@@ -1,4 +1,4 @@
-<?php
+ <?php
 // Route::get('/', function () { return redirect('/admin/home'); });
 
 $this->get('/', 'Guest\EventsController@index')->name('guest.home');

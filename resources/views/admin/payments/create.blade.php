@@ -1,18 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.payments.title')</h3>
+    <h3 class="page-title">Pago</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.payments.store']]) !!}
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            @lang('quickadmin.qa_create')
-        </div>
-        
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('email', 'Email*', ['class' => 'control-label']) !!}
+                    <label for="event_id" class="control-label">Event</label>
+                    <select class="form-control" name="event_id">
+                     @foreach($events as $event)
+                       <option value="{{ $event->id }}"> {{ $event->title }} </option>
+                     @endforeach
+                    </select>
+                </div>
+            </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    <label for="event_id" class="control-label">Ticket</label>
+                    <select class="form-control" name="event_id">
+                     @foreach($tickets as $ticket)
+                       <option value="{{ $ticket->id }}"> {{ $ticket->title }} </option>
+                     @endforeach
+                    </select>
+                </div>
+            </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
                     {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('email'))
@@ -24,7 +43,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('merchant', 'Merchant*', ['class' => 'control-label']) !!}
+                    {!! Form::label('merchant', 'Wallets', ['class' => 'control-label']) !!}
                     {!! Form::text('merchant', old('merchant'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('merchant'))
@@ -36,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('amount', 'Amount*', ['class' => 'control-label']) !!}
+                    {!! Form::label('amount', 'Cantidad', ['class' => 'control-label']) !!}
                     {!! Form::text('amount', old('amount'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('amount'))
@@ -50,7 +69,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Pagar'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 

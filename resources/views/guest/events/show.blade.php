@@ -115,59 +115,32 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="event-meta">
-                                <div class="datetime">Start time: <span class="label label-default">{{ $event->start_time }}</span></div>
-                                <div class="venue">Venue: <span class="label label-info">{{ $event->venue }}</span></div>
+                                <div class="datetime">Fecha de inicio: <span class="label label-default">{{ $event->start_time }}</span></div>
+                                <div class="venue">Locacion: <span class="label label-info">{{ $event->venue }}</span></div>
                             </div>
 
                             @if(!$tickets->isEmpty())
                             <div class="tickets">
-                                <h3>Buy Tickets</h3>
+                                <h3>Tickets Disponibles</h3>
                                 <form action="{{ route('guest.payment') }}" method="POST" id="payment-form">
                                     {{ csrf_field() }}
                                     <table class="table table-tickets">
                                         <thead>
-                                            <th>Type</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Total</th>
+                                            <th>Tipo</th>
+                                            <th>Precio</th>
                                         </thead>
                                         <tbody>
                                             @foreach($tickets as $ticket)
                                                 <tr class="ticket-{{ $ticket->id }}">
                                                     <td>{{ $ticket->title }}</td>
-                                                    <td><input
-                                                                type="number"
-                                                                class="quantity form-control"
-                                                                min="0"
-                                                                max="{{ $ticket->amount }}"
-                                                                step="1"
-                                                                value="0"
-                                                                data-ticket="{{ $ticket->id }}">
-                                                    </td>
-                                                    <td><strong>{{ $ticket->price }}&nbsp;€</strong></td>
-                                                    <td>
-                                                        <strong class="subtotal">0.00</strong><strong>&nbsp;€</strong>
-                                                        <input
-                                                                class="rsubtotal"
-                                                                type="hidden" value="0.00"
-                                                                disabled>
-                                                    </td>
+                                                    <td><strong>{{ $ticket->price }}&nbsp;$</strong></td>
+
                                                 </tr>
                                             @endforeach
-                                                <tr class="last">
-                                                    <td colspan="3"></td>
-                                                    <td><strong class="total">0.00</strong><strong>&nbsp;€</strong><input type="hidden" name="total" class="rtotal" value="0.00"></td>
-                                                </tr>
+                           
                                         </tbody>
                                     </table>
                                     <input type="hidden" name="tickets">
-                                    @if (!env('STRIPE_KEY'))
-                                        <div id="card-errors" class="alert alert-danger">Error: Stripe (.env) not configured for payment.</div>
-                                    @else
-                                        <div class="input-group">
-                                            <span class="input-group-addon">@</span>
-                                            <input type="email" name="email" class="form-control" placeholder="email@example.com">
-                                        </div>
                                         <div id="card-element"></div>
                                         <div id="card-errors" class="card-errors alert alert-danger"></div>
                                         @if (session('message'))
@@ -176,12 +149,12 @@
                                         @if (session('error'))
                                             <div class="alert alert-danger">{{ session('error') }}</div>
                                         @endif
-                                        <button class="btn btn-success" style="float: right">Pay Now</button>
-                                    @endif
+                                        <a class="btn btn-success" style="float: right" href="{{ url('/login') }}">Comprar tickets</a>
+                             
                                 </form>
                             </div>
                             @else
-                                <div class="alert alert-warning">We're sorry, but there are no tickets available</div>
+                                <div class="alert alert-warning">No hay tickets disponibles</div>
                             @endif
                         </div>
                     </div>
